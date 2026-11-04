@@ -7,7 +7,7 @@ GO
 -- Tabla Cliente
 
 CREATE TABLE Cliente (
-    Cliente_Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL, -- PK
+    ClienteId INT PRIMARY KEY IDENTITY(1,1) NOT NULL, -- PK
     Nombre VARCHAR(20) NOT NULL,
     Apellido1 VARCHAR(20) NOT NULL,
     Apellido2 VARCHAR(20) NOT NULL,
@@ -20,15 +20,15 @@ GO
 -- Catalogo Marca
 
 CREATE TABLE Marca (
-    Marca_Id INT IDENTITY(1,1) PRIMARY KEY, -- PK
+    MarcaId INT IDENTITY(1,1) PRIMARY KEY, -- PK
     Nombre VARCHAR(50) NOT NULL UNIQUE
 );
 GO
 
 -- Catalogo Tipo Vehiculo
 
-CREATE TABLE Tipo_Vehiculo (
-    Tipo_Vehiculo_Id INT IDENTITY(1,1) PRIMARY KEY, -- PK
+CREATE TABLE TipoVehiculo (
+    TipoVehiculoId INT IDENTITY(1,1) PRIMARY KEY, -- PK
     Nombre VARCHAR(50) NOT NULL UNIQUE
 );
 GO
@@ -36,50 +36,50 @@ GO
 -- Tabla Vehiculo
 
 CREATE TABLE Vehiculo (
-    Vehiculo_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
-    Marca_Id INT NOT NULL, -- FK
-    Tipo_Vehiculo_Id INT NOT NULL, -- FK
+    VehiculoId INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
+    MarcaId INT NOT NULL, -- FK
+    TipoVehiculoId INT NOT NULL, -- FK
     Modelo VARCHAR(20) NOT NULL,
     Anio SMALLINT NOT NULL, -- SMALLINT permite guardar directamente el año, por ejemplo 2022
     Kilometraje INT NOT NULL,
     Precio DECIMAL(12,2) NOT NULL,
     Descripcion VARCHAR(300) NOT NULL,
 
-    FOREIGN KEY (Marca_Id)
-        REFERENCES Marca(Marca_Id),
+    FOREIGN KEY (MarcaId)
+        REFERENCES Marca(MarcaId),
 
-    FOREIGN KEY (Tipo_Vehiculo_Id)
-        REFERENCES Tipo_Vehiculo(Tipo_Vehiculo_Id)
+    FOREIGN KEY (TipoVehiculoId)
+        REFERENCES TipoVehiculo(TipoVehiculoId)
 );
 GO
 
 -- Tabla Publicacion
 
 CREATE TABLE Publicacion (
-    Publicacion_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
-    Usuario_Id INT NOT NULL, -- FK
-    Vehiculo_Id INT NOT NULL, -- FK
-    Fecha_Publicacion DATETIME NOT NULL,
-    Estado_Publicacion BIT NOT NULL,
+    PublicacionId INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
+    UsuarioId INT NOT NULL, -- FK
+    VehiculoId INT NOT NULL, -- FK
+    FechaPublicacion DATETIME NOT NULL,
+    EstadoPublicacion BIT NOT NULL,
     Titulo VARCHAR(50) NOT NULL,
 
-    FOREIGN KEY (Usuario_Id)
-        REFERENCES Cliente(Cliente_Id),
+    FOREIGN KEY (UsuarioId)
+        REFERENCES Cliente(ClienteId),
 
-    FOREIGN KEY (Vehiculo_Id)
-        REFERENCES Vehiculo(Vehiculo_Id)
+    FOREIGN KEY (VehiculoId)
+        REFERENCES Vehiculo(VehiculoId)
 );
 GO
 
--- Tabla Fotografias
+-- Tabla Fotografia
 
-CREATE TABLE Fotografias (
-    Fotografia_Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
-    Publicacion_Id INT NOT NULL, -- FK
-    Ruta_Fotografia VARCHAR(500) NOT NULL,
+CREATE TABLE Fotografia (
+    FotografiaId INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
+    PublicacionId INT NOT NULL, -- FK
+    RutaFotografia VARCHAR(500) NOT NULL,
 
-    FOREIGN KEY (Publicacion_Id)
-        REFERENCES Publicacion(Publicacion_Id)
+    FOREIGN KEY (PublicacionId)
+        REFERENCES Publicacion(PublicacionId)
 );
 GO
 
@@ -87,7 +87,7 @@ GO
 
 SELECT * FROM Cliente;
 SELECT * FROM Marca;
-SELECT * FROM Tipo_Vehiculo;
+SELECT * FROM TipoVehiculo;
 SELECT * FROM Vehiculo;
 SELECT * FROM Publicacion;
-SELECT * FROM Fotografias;
+SELECT * FROM Fotografia;
