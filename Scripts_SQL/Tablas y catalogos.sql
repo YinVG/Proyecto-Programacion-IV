@@ -8,12 +8,16 @@ GO
 
 CREATE TABLE Cliente (
     ClienteId INT PRIMARY KEY IDENTITY(1,1) NOT NULL, -- PK
+    RolId INT NOT NULL, -- FK
     Nombre VARCHAR(20) NOT NULL,
     Apellido1 VARCHAR(20) NOT NULL,
     Apellido2 VARCHAR(20) NOT NULL,
     Correo VARCHAR(100) UNIQUE NOT NULL,
     FechaRegistro DATETIME NOT NULL,
-    Estado BIT NOT NULL
+    Estado BIT NOT NULL,
+
+    FOREIGN KEY (RolId) 
+        REFERENCES Rol(RolId)
 );
 GO
 
@@ -32,6 +36,14 @@ CREATE TABLE TipoVehiculo (
     Nombre VARCHAR(50) NOT NULL UNIQUE
 );
 GO
+
+-- Catalogo Rol
+CREATE TABLE Rol (
+    RolId INT IDENTITY(1,1) PRIMARY KEY, --PK
+    Descripcion VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
 
 -- Tabla Vehiculo
 
@@ -57,13 +69,13 @@ GO
 
 CREATE TABLE Publicacion (
     PublicacionId INT IDENTITY(1,1) PRIMARY KEY NOT NULL, -- PK
-    UsuarioId INT NOT NULL, -- FK
+    ClienteId INT NOT NULL, -- FK
     VehiculoId INT NOT NULL, -- FK
     FechaPublicacion DATETIME NOT NULL,
     EstadoPublicacion BIT NOT NULL,
     Titulo VARCHAR(50) NOT NULL,
 
-    FOREIGN KEY (UsuarioId)
+    FOREIGN KEY (ClienteId)
         REFERENCES Cliente(ClienteId),
 
     FOREIGN KEY (VehiculoId)
