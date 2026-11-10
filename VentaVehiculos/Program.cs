@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using VentaVehiculos.Data;
+
 namespace VentaVehiculos
 {
     public class Program
@@ -8,6 +11,12 @@ namespace VentaVehiculos
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Registro del DBContext
+
+            builder.Services.AddDbContext<VentaVehiculosDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("VentaVehiculos")));
+
+
 
             var app = builder.Build();
 
