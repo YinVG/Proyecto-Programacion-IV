@@ -6,12 +6,12 @@
         public int PublicacionId { get; set; }
 
         // Relaciones individuales
-        public Cliente ClienteId { get; set; } = null!; // recuerden que usuario apunta a cliente id en SQL
+        public Cliente Cliente { get; set; } = null!; // recuerden que usuario apunta a cliente id en SQL
 
         public Vehiculo Vehiculo { get; set; } = null!;
 
         // Llaves foraneas
-        public int UsuarioId { get; set; } // fk
+        public int ClienteId { get; set; } // fk
 
         public int VehiculoId { get; set; } // fk
 

@@ -5,7 +5,9 @@
 
         public int ClienteId { get; set; }
 
-        public int RollId { get; set; }
+        public int RolId { get; set; } // FK
+
+        public Rol Rol { get; set; } = null!;   // Propiedad de navegación
 
         public string Nombre { get; set; } = null!;
 
