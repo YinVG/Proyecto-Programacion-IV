@@ -21,11 +21,15 @@ namespace VentaVehiculos.Data
 
         public DbSet<Marca> Marcas { get; set; }
 
+        public DbSet<Rol> Roles { get; set; }
+
         public DbSet<Publicacion> Publicaciones { get; set; }
 
         public DbSet<TipoVehiculo> TipoVehiculos { get; set; }
 
         public DbSet<Vehiculo> Vehiculos { get; set; }
+
+        
 
     }
 }

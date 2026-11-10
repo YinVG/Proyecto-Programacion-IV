@@ -6,7 +6,7 @@
         public int PublicacionId { get; set; }
 
         // Relaciones individuales
-        public Cliente Usuario { get; set; } = null!; // recuerden que usuario apunta a cliente id en SQL
+        public Cliente ClienteId { get; set; } = null!; // recuerden que usuario apunta a cliente id en SQL
 
         public Vehiculo Vehiculo { get; set; } = null!;
 
